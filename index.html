@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ember Starter Kit</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.3.0.js"></script>
+    <script src="http://builds.emberjs.com/tags/v1.5.0/ember.js"></script>
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+    <h2>Notify Property Change Does Make it to observer inside component</h2>
+    
+    <p>When you change the value of the textfield, it makes it to the component (and "THIS FIRED!" arrives in the console). When you click "FORCE", it should notify the observer, but it doesn't..</p>
+
+    {{outlet}}
+    </script>
+    <script type="text/x-handlebars" data-template-name="index">
+      Outside: 
+      {{view Ember.TextField valueBinding="foo"}}
+      <button {{action 'forceChange'}}>
+          FORCE
+      </button>
+      <br>
+      {{my-component data=foo}}
+    </script>
+    <script type="text/x-handlebars" data-template-name="components/my-component">
+      Inside: {{display}}
+      <br>
+      <br>
+      <button {{action 'insideClick'}}>
+          Click me to change the property on the inside
+    </button>
+    </script>
+  </body>
+</html>
